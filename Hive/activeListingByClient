@@ -1,0 +1,66 @@
+DROP TABLE sandbox_dev_bi.modefiedClientHealthSummaryByEventIdLatestDate PURGE;
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS sandbox_dev_bi.modefiedClientHealthSummaryByEventIdLatestDate
+(                         
+primary_performer         STRING,
+totallistings             INT,
+venue_name                STRING,
+user_id                   STRING
+) 
+;
+
+set mapred.job.queue.name=root.dev;
+
+
+insert OVERWRITE TABLE sandbox_dev_bi.modefiedClientHealthSummaryByEventIdLatestDate
+
+SELECT
+    case when primary_performer like '' then event_name
+         else primary_performer
+    end  as    primary_performer,
+totallistings                   ,
+venue_name                      ,
+user_id                   
+
+from 
+sandbox_dev_bi.clientHealthSummaryByEventIdLatestDate 
+where activeOrSold = "1"
+;
+
+
+
+
+
+DROP TABLE sandbox_dev_bi.activeListingByClientAndPerformer PURGE;
+
+CREATE TABLE IF NOT EXISTS sandbox_dev_bi.activeListingByClientAndPerformer
+(                         
+primary_performer         STRING,
+venue_name                STRING,
+user_id                   STRING,
+totallistings             INT,
+totalEvents               INT
+) 
+;
+
+set mapred.job.queue.name=root.dev;
+
+
+insert OVERWRITE TABLE sandbox_dev_bi.activeListingByClientAndPerformer
+
+SELECT
+primary_performer         ,
+venue_name                ,
+user_id                   ,
+sum(totallistings)        as  totallistings,
+count(*)                  as  totalEvents
+from 
+sandbox_dev_bi.modefiedClientHealthSummaryByEventIdLatestDate 
+group by 
+primary_performer, venue_name, user_id
+;
+
