@@ -1,7 +1,7 @@
 # Git主要完成几个问题
 # https://www.rstudio.com/resources/webinars/collaboration-and-time-travel-version-control-with-git-github-and-rstudio/
 # (1) A unique identifier (SHA)
-# (1) What changed?
+# (1) What changed? (有些时候我们还可以undo一个undo)
 # (1) When did it change?
 # (1) Who changed it?
 # (1) Why did it change?
