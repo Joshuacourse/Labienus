@@ -1,6 +1,7 @@
-convertToPercent <- function(x) {
-  percent <- round(x * 100, digits = 1)
-  result <- paste(percent, "%", sep = "")
-  return(result)
-}
 
+woaini
+sumOfSquares <- function(x,y) {
+  x^2 + y^2
+
+
+}
