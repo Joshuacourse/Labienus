@@ -60,3 +60,6 @@
 # Checking out an old file will change the current file back to the previous state
 # checking out an entire working directory (git checkout <SHA>)
 # Conversely, if you checked out the entire working directory without specifying a file, Git will pull up the entire directory at the point in time that you directed it to, but it will leave the current state of your project untouched
+
+# Push 和Pull都是在 git隐藏包里面的操作
+# 为什么最好总是pull 先
