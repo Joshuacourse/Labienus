@@ -1,1 +1,6 @@
 # this is tdsfdad
+
+
+sumOfSquares <- function(x,y) {
+  x^2 + y^2
+}
